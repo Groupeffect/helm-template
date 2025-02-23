@@ -19,7 +19,8 @@ imagePullSecrets: []
 nameOverride: ""
 fullnameOverride: ""
 
-command: ["python3","-m","http.server", "8100"]
+command: '["python"]'
+command_args: '["-m", "http.server", "8100"]'
 
 # This section builds out the service account more information can be found here: https://kubernetes.io/docs/concepts/security/service-accounts/
 serviceAccount:

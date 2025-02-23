@@ -1,0 +1,32 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: py
+spec:
+  destination:
+    namespace: dev
+    server: https://kubernetes.default.svc
+  source:
+    path: xapp
+    repoURL: https://github.com/Groupeffect/helm-template.git
+    targetRevision: main
+    helm:
+      valueFiles:
+        - values.yaml
+      parameters:
+        - name: image.repository
+          value: python
+        - name: image.tag
+          value: 3.12-slim-bookworm
+        - name: image.pullPolicy
+          value: IfNotPresent
+        - name: service.port
+          value: '8100'
+  sources: []
+  project: default
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: false
+    syncOptions:
+      - Replace=true

@@ -41,6 +41,9 @@ spec:
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
           {{- if .Values.command }}
           command: {{ .Values.command }}
+          {{- if .Values.command }}
+          args: {{ .Values.command_args}}
+          {{- end }}
           {{- end }}
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           ports:
